@@ -10,14 +10,18 @@ import 'package:get/get.dart';
 class Details extends StatelessWidget {
   Details({super.key});
 
-  String name = 'Cappuccino';
-  String extra = 'With Steamed Milk';
+  String name = 'Cappuccino'; // Change it to dynamic value.
+  String extra = 'With Steamed Milk'; // Change it to dynamic value.
   String description =
-      'Cappuccino is a holly day main of the controller and we will play with it we play for fun and profit for fun Cappuccino is a holly day main of the controller and we will play with it we play for fun and profit for fun Cappuccino is a holly day main of the controller and we will play with it we play for fun and profit for fun Cappuccino is a holly day main of the controller and we will play with it we play for fun and profit for fun Cappuccino is a holly day main of the controller and we will play with it we play for fun and profit for fun Cappuccino is a holly day main of the controller and we will play with it we play for fun and profit for fun Cappuccino is a holly day main of the controller and we will play with it we play for fun and profit for fun';
-  String roast = 'Medium Roasted';
-  double rate = 4.5;
-  double price = 4.20;
-  String size = 'S';
+      'Cappuccino is a holly day main of the controller and we will play with it we play for fun and profit for fun Cappuccino is a holly day main of the controller and we will play with it we play for fun and profit for fun Cappuccino is a holly day main of the controller and we will play with it we play for fun and profit for fun Cappuccino is a holly day main of the controller and we will play with it we play for fun and profit for fun Cappuccino is a holly day main of the controller and we will play with it we play for fun and profit for fun Cappuccino is a holly day main of the controller and we will play with it we play for fun and profit for fun Cappuccino is a holly day main of the controller and we will play with it we play for fun and profit for fun'; // Change it to dynamic value.
+  String roast = 'Medium Roasted'; // Change it to dynamic value.
+  double rate = 4.5; // Change it to dynamic value.
+  double price = 4.20; // Change it to dynamic value.
+  String size = 'S'; // Change it to dynamic value.
+  bool small = true;
+  bool medium = false;
+  bool large = false;
+  bool isFavorite = false;
 
   @override
   Widget build(BuildContext context) {
@@ -250,35 +254,23 @@ class Details extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
                                 children: [
-                                  cuSizeBox(context, controller, 0, () {
-                                    controller.small = true;
+                                  cuSizeBox(context, controller, 0, small, () {
+                                    small = true;
+                                    medium = false;
+                                    large = false;
                                     controller.toggleSize();
-                                    print('Small Value : ${controller.small}');
-                                    print(
-                                      'Medium Value : ${controller.medium}',
-                                    );
-                                    print('Large Value : ${controller.large}');
                                   }),
-
-                                  cuSizeBox(context, controller, 1, () {
-                                    controller.medium = true;
+                                  cuSizeBox(context, controller, 1, medium, () {
+                                    small = false;
+                                    medium = true;
+                                    large = false;
                                     controller.toggleSize();
-                                    print('Small Value : ${controller.small}');
-                                    print(
-                                      'Medium Value : ${controller.medium}',
-                                    );
-                                    print('Large Value : ${controller.large}');
                                   }),
-
-                                  // Large Size Box
-                                  cuSizeBox(context, controller, 2, () {
-                                    controller.large = true;
+                                  cuSizeBox(context, controller, 2, large, () {
+                                    small = false;
+                                    medium = false;
+                                    large = true;
                                     controller.toggleSize();
-                                    print('Small Value : ${controller.small}');
-                                    print(
-                                      'Medium Value : ${controller.medium}',
-                                    );
-                                    print('Large Value : ${controller.large}');
                                   }),
                                 ],
                               );
@@ -325,7 +317,7 @@ class Details extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            '4.20',
+                            '$price',
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w600,
@@ -338,7 +330,7 @@ class Details extends StatelessWidget {
 
                   const Spacer(),
 
-                  // SizedBox(width: 10),
+                  // Buy Button
                   MaterialButton(
                     color: mainColor,
                     minWidth: MediaQuery.of(context).size.width * 0.6,
